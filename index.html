@@ -8,108 +8,151 @@
     <link rel="manifest" href="/manifest.json">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Pacifico&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-    <header>
-        <h1 class="app-title">みんみん日記</h1>
-        <p>あなたの心地よい眠りをサポートします</p>
-    </header>
+    <div id="app-container">
+        <header>
+            <h1 class="app-title">みんみん日記</h1>
+            <p id="welcomeMessage">あなたの心地よい眠りをサポートします</p>
+            <button id="settingsButton" class="icon-button"><i class="fas fa-cog"></i></button>
+            <nav class="main-nav">
+                <button class="nav-button active" data-page="record">記録する</button>
+                <button class="nav-button" data-page="history">過去の記録</button>
+                <button class="nav-button" data-page="recommendation">睡眠提案</button>
+            </nav>
+        </header>
 
-    <main>
-        <section id="common-date-section" class="card date-card">
-            <label for="selectedDate" class="date-label">日付を選択:</label>
-            <input type="date" id="selectedDate" class="common-date-input" required>
+        <section id="minmin-character-section" class="character-card">
+            <h2><span class="icon">🌱</span> 今日の「みんみん」</h2>
+            <div class="character-display">
+                <img id="minminCharacter" src="icons/minmin_egg.png" alt="みんみんキャラクター" class="minmin-image">
+                <img id="minminFlower" src="icons/flower_0.png" alt="みんみんの花" class="minmin-flower-image">
+                <p id="minminStatus" class="status-text">まだ生まれたばかりです。</p>
+            </div>
+            <div class="growth-info-container">
+                <p class="growth-info">合計記録日数: <span id="recordDaysCount">0</span>日</p>
+                <p class="growth-info">連続日記日数: <span id="continuousDiaryDays">0</span>日</p>
+            </div>
         </section>
 
-        <section id="sleep-record-section" class="card">
-            <h2><span class="icon">😴</span> 毎日の睡眠時間を記録</h2>
-            <form id="sleepRecordForm">
-                <label for="sleepDuration">睡眠時間 (時間):</label>
-                <input type="number" id="sleepDuration" step="0.1" min="0" max="24" placeholder="例: 7.5" required><br>
-                <button type="submit">記録する</button>
-            </form>
-            <p id="sleepRecordMessage" class="message"></p>
-        </section>
+        <main>
+            <div id="record-page" class="page active-page">
+                <section id="common-date-section" class="card date-card">
+                    <label for="selectedDate" class="date-label">日付を選択:</label>
+                    <input type="date" id="selectedDate" class="common-date-input" required>
+                </section>
 
-        <section id="daily-condition-section" class="card">
-            <h2><span class="icon">😊</span> その日の体調を記録</h2>
-            <form id="conditionForm">
-                <label for="feeling">今日の気分は？</label>
-                <select id="feeling">
-                    <option value="とても良い">😄 とても良い</option>
-                    <option value="良い">🙂 良い</option>
-                    <option value="普通">😐 普通</option>
-                    <option value="悪い">😔 悪い</option>
-                    <option value="とても悪い">😫 とても悪い</option>
-                </select><br>
+                <div class="record-forms-grid">
+                    <section id="sleep-record-section" class="card">
+                        <h2><span class="icon">😴</span> 毎日の睡眠時間を記録</h2>
+                        <form id="sleepRecordForm">
+                            <label for="sleepDuration">睡眠時間 (時間):</label>
+                            <input type="number" id="sleepDuration" step="0.1" min="0" max="24" placeholder="例: 7.5" required><br>
+                            <button type="submit">記録する</button>
+                        </form>
+                        <p id="sleepRecordMessage" class="message"></p>
+                    </section>
 
-                <label for="energyLevel">今日のエネルギーレベルは？</label>
-                <select id="energyLevel">
-                    <option value="高い">🚀 高い</option>
-                    <option value="普通">🚶‍♂️ 普通</option>
-                    <option value="低い">🔋 低い</option>
-                    <option value="非常に低い">😴 非常に低い</option>
-                </select><br>
+                    <section id="daily-condition-section" class="card">
+                        <h2><span class="icon">😊</span> その日の体調を記録</h2>
+                        <form id="conditionForm">
+                            <label for="feeling">今日の気分は？</label>
+                            <select id="feeling">
+                                <option value="とても良い">😄 とても良い</option>
+                                <option value="良い">🙂 良い</option>
+                                <option value="普通">😐 普通</option>
+                                <option value="悪い">😔 悪い</option>
+                                <option value="とても悪い">😫 とても悪い</option>
+                            </select><br>
 
-                <button type="submit">体調を記録する</button>
-            </form>
-            <p id="conditionMessage" class="message"></p>
-        </section>
+                            <label for="energyLevel">今日のエネルギーレベルは？</label>
+                            <select id="energyLevel">
+                                <option value="高い">🚀 高い</option>
+                                <option value="普通">🚶‍♂️ 普通</option>
+                                <option value="低い">🔋 低い</option>
+                                <option value="非常に低い">😴 非常に低い</option>
+                            </select><br>
 
-        <section id="diary-section" class="card">
-            <h2><span class="icon">📝</span> 寝る前に日記を書く</h2>
-            <form id="diaryForm">
-                <label for="diaryText">日記内容:</label>
-                <textarea id="diaryText" rows="5" placeholder="今日の出来事や寝る前の気持ちを記録しましょう..."></textarea><br>
-                <button type="submit">日記を記録する</button>
-            </form>
-            <p id="diaryMessage" class="message"></p>
-        </section>
+                            <button type="submit">体調を記録する</button>
+                        </form>
+                        <p id="conditionMessage" class="message"></p>
+                    </section>
 
-        <section id="recommendation-section" class="card">
-            <h2><span class="icon">💡</span> 最適な睡眠時間を提案</h2>
-            <button id="suggestSleepButton">最適な睡眠時間を提案してもらう</button>
-            <p id="recommendedSleepTime" class="result"></p>
-        </section>
-
-        <section id="history-section" class="card history-detail-card">
-            <h2><span class="icon">🗓️</span> これまでの記録</h2>
-            <div id="historyDisplay">
-                <p class="history-note">日付選択で表示されるデータが切り替わります。</p>
-                <div class="history-item">
-                    <h3>睡眠記録</h3>
-                    <p id="displaySleepDuration" class="history-data"></p>
-                </div>
-                <div class="history-item">
-                    <h3>体調記録</h3>
-                    <p id="displayFeeling" class="history-data"></p>
-                    <p id="displayEnergyLevel" class="history-data"></p>
-                </div>
-                <div class="history-item">
-                    <h3>日記エントリ</h3>
-                    <p id="displayDiaryText" class="history-data"></p>
+                    <section id="diary-section" class="card full-width-card">
+                        <h2><span class="icon">📝</span> 寝る前に日記を書く</h2>
+                        <form id="diaryForm">
+                            <label for="diaryText">日記内容:</label>
+                            <textarea id="diaryText" rows="5" placeholder="今日の出来事や寝る前の気持ちを記録しましょう..."></textarea><br>
+                            <button type="submit">日記を記録する</button>
+                        </form>
+                        <p id="diaryMessage" class="message"></p>
+                    </section>
                 </div>
             </div>
-            <button id="showAllHistoryButton" class="secondary-button">全記録を一覧で見る</button>
-            <div id="allHistoryModal" class="modal">
-                <div class="modal-content">
-                    <span class="close-button">&times;</span>
-                    <h3>全記録一覧</h3>
+
+            <div id="history-page" class="page">
+                <section id="history-graph-section" class="card full-width-card">
+                    <h2><span class="icon">📈</span> 睡眠時間グラフ</h2>
                     <div class="chart-container">
                         <canvas id="sleepDurationChart"></canvas>
+                        <div id="diaryTooltip" class="diary-tooltip"></div>
                     </div>
-                    <h4>体調記録</h4>
-                    <ul id="allConditionHistoryList" class="history-list"></ul>
-                    <h4>日記エントリ</h4>
-                    <ul id="allDiaryHistoryList" class="history-list"></ul>
-                </div>
+                    <p class="chart-info">グラフ上の棒にカーソルを合わせると日記が見れます。</p>
+                </section>
             </div>
-        </section>
-    </main>
 
-    <footer>
-        <p>&copy; 2025 みんみん日記</p>
-    </footer>
+            <div id="recommendation-page" class="page">
+                <section id="recommendation-section" class="card">
+                    <h2><span class="icon">💡</span> 最適な睡眠時間を提案</h2>
+                    <button id="suggestSleepButton">最適な睡眠時間を提案してもらう</button>
+                    <p id="recommendedSleepTime" class="result"></p>
+                </section>
+            </div>
+        </main>
+
+        <footer>
+            <p>&copy; 2025 みんみん日記</p>
+        </footer>
+    </div>
+
+    <div id="initialNicknameModal" class="modal">
+        <div class="modal-content small-modal">
+            <h3>ようこそ！あなたの名前を教えてください</h3>
+            <p>みんみん日記へようこそ！<br>
+            あなたのニックネームを登録してください。登録すると、みんみんがあなたを名前で呼んでくれます！</p>
+            <form id="initialNicknameForm">
+                <label for="initialNicknameInput">ニックネーム:</label>
+                <input type="text" id="initialNicknameInput" placeholder="あなたの名前" maxlength="20" required>
+                <button type="submit">登録する</button>
+            </form>
+            <p id="initialNicknameMessage" class="message"></p>
+        </div>
+    </div>
+
+    <div id="settingsModal" class="modal">
+        <div class="modal-content small-modal">
+            <span class="close-button">&times;</span>
+            <h2><span class="icon">⚙️</span> 設定</h2>
+            <section class="setting-section">
+                <h3>ニックネーム変更</h3>
+                <form id="nicknameForm">
+                    <label for="nicknameInput">現在のニックネーム:</label>
+                    <input type="text" id="nicknameInput" placeholder="あなたの名前を入力してください" maxlength="20">
+                    <button type="submit">更新</button>
+                </form>
+                <p id="nicknameMessage" class="message"></p>
+            </section>
+
+            <section class="setting-section">
+                <h3>データ管理</h3>
+                <p>記録された全てのデータを消去します。<br>この操作は元に戻せません。</p>
+                <button id="clearAllDataButton" class="secondary-button delete-button">全てのデータを消去</button>
+                <p id="clearDataMessage" class="message"></p>
+            </section>
+        </div>
+    </div>
+
 
     <script src="script.js"></script>
     <script>
