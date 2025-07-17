@@ -1,0 +1,21 @@
+{
+  "name": "睡眠トラッカーアプリ",
+  "short_name": "睡眠アプリ",
+  "description": "あなたの最適な睡眠時間を提案するアプリ",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#eef2f7",
+  "theme_color": "#4CAF50",
+  "icons": [
+    {
+      "src": "/icons/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icons/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

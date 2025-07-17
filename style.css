@@ -1,0 +1,341 @@
+/* Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Pacifico&display=swap');
+
+:root {
+    /* 色のパレット */
+    --primary-color: #5cb85c; /* 緑系（メインカラー） */
+    --primary-dark: #449d44;
+    --secondary-color: #5bc0de; /* 水色系 */
+    --accent-color: #f0ad4e; /* オレンジ系 */
+    --background-light: #f8fcfd; /* 非常に明るい背景 */
+    --text-color-dark: #34495e; /* 濃い文字色 */
+    --text-color-light: #ecf0f1; /* 明るい文字色 */
+    --card-bg: #ffffff;
+    --shadow-light: rgba(0, 0, 0, 0.08);
+    --shadow-medium: rgba(0, 0, 0, 0.15);
+}
+
+body {
+    font-family: 'Noto Sans JP', sans-serif;
+    margin: 0;
+    background-color: var(--background-light);
+    color: var(--text-color-dark);
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+header {
+    background: linear-gradient(to right, #6dd5ed, #2193b0); /* 水色系のグラデーション */
+    color: var(--text-color-light);
+    padding: 2rem 0;
+    text-align: center;
+    box-shadow: 0 4px 8px var(--shadow-medium);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.app-title {
+    font-family: 'Pacifico', cursive;
+    font-size: 3.5rem;
+    margin: 0;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+header p {
+    font-size: 1.2rem;
+    margin-top: 10px;
+}
+
+main {
+    flex-grow: 1;
+    padding: 30px;
+    max-width: 900px;
+    margin: 20px auto;
+}
+
+.card {
+    background-color: var(--card-bg);
+    padding: 25px;
+    margin-bottom: 30px;
+    border-radius: 12px;
+    box-shadow: 0 6px 15px var(--shadow-light);
+    transition: transform 0.2s ease-in-out;
+    border: 1px solid #e0e6eb; /* 軽いボーダー */
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.date-card {
+    background-color: #dbe9f5; /* 日付カードの背景色を調整 */
+    border: 1px solid #a8dcf0;
+}
+
+section h2 {
+    color: var(--text-color-dark);
+    margin-top: 0;
+    border-bottom: 3px solid var(--primary-color); /* メインカラーの下線 */
+    padding-bottom: 12px;
+    margin-bottom: 25px;
+    font-size: 1.8rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.icon {
+    font-size: 1.5em; /* アイコンのサイズ */
+    color: var(--primary-color);
+}
+
+/* 共通日付選択 */
+#common-date-section {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.date-label {
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: var(--text-color-dark);
+    margin-bottom: 15px;
+    display: block;
+}
+
+.common-date-input {
+    width: 250px;
+    padding: 12px;
+    border: 1px solid #a8dadc;
+    border-radius: 8px;
+    font-size: 1.2rem;
+    text-align: center;
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
+}
+
+form label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: #555;
+    font-size: 1.1rem;
+}
+
+form input[type="number"],
+form select,
+form textarea {
+    width: calc(100% - 24px);
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1.1rem;
+    box-sizing: border-box;
+    background-color: #fdfdfd; /* 入力フィールドの背景 */
+}
+
+form textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+button {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 14px 30px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    display: block;
+    width: fit-content;
+    margin-top: 15px;
+    box-shadow: 0 4px 6px rgba(0, 123, 255, 0.2);
+}
+
+button:hover {
+    background-color: var(--primary-dark);
+    transform: translateY(-2px);
+}
+
+.secondary-button {
+    background-color: #6c757d;
+    box-shadow: 0 4px 6px rgba(108, 117, 125, 0.2);
+    margin-top: 20px; /* 上の要素からの間隔 */
+}
+.secondary-button:hover {
+    background-color: #5a6268;
+}
+
+.message {
+    color: var(--primary-color);
+    font-weight: bold;
+    margin-top: 15px;
+    font-size: 1rem;
+}
+
+.result {
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: var(--accent-color);
+    margin-top: 20px;
+    background-color: #fff3e0;
+    padding: 15px;
+    border-radius: 8px;
+    border-left: 5px solid var(--accent-color);
+}
+
+/* 過去の記録表示 (日付選択時の表示) */
+.history-note {
+    font-size: 0.9rem;
+    color: #777;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.history-detail-card { /* 日付選択時に表示される履歴カード */
+    background-color: #fdfefe;
+    border: 1px solid #d0e0ed;
+}
+
+.history-item {
+    background-color: #f8fcfd;
+    padding: 15px 20px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    border: 1px solid #e0f2f7;
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.history-item h3 {
+    color: #2980b9;
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 1.3rem;
+    border-bottom: 1px dashed #a8dadc;
+    padding-bottom: 5px;
+}
+
+.history-data {
+    font-size: 1.1rem;
+    color: #444;
+    margin-bottom: 5px;
+}
+
+/* モーダルウィンドウ */
+.modal {
+    display: none; /* ← ここが重要です。初期状態では非表示に設定します */
+    position: fixed;
+    z-index: 1001;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.7); /* より濃い半透明背景 */
+    /* display: flex; ← この行は削除します（JavaScriptで表示するときに設定するため） */
+    justify-content: center;
+    align-items: center;
+    padding: 20px; /* 小さい画面での余白 */
+}
+
+.modal-content {
+    background-color: #fefefe;
+    padding: 30px;
+    border: 1px solid #888;
+    width: 90%; /* 小さい画面での幅 */
+    max-width: 800px; /* 最大幅 */
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.4); /* 強めの影 */
+    position: relative;
+    max-height: 90vh; /* 高さの最大値 */
+    overflow-y: auto;
+}
+
+.close-button {
+    color: #aaa;
+    position: absolute;
+    top: 15px;
+    right: 25px;
+    font-size: 32px; /* 大きく */
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: #333;
+    text-decoration: none;
+}
+
+.history-list {
+    list-style-type: none;
+    padding: 0;
+    margin-bottom: 20px;
+}
+
+.history-list li {
+    background-color: #e9f5fd;
+    margin-bottom: 8px;
+    padding: 10px 15px;
+    border-left: 5px solid #2193b0;
+    border-radius: 5px;
+    font-size: 0.95rem;
+    display: flex; /* 顔文字とテキストを並べる */
+    align-items: center;
+    gap: 8px;
+}
+
+.chart-container {
+    margin: 20px 0;
+    background-color: #f0f8ff; /* グラフ背景色 */
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid #cfe2f3;
+}
+
+footer {
+    text-align: center;
+    padding: 1.8rem 0; /* パディングを増やす */
+    background-color: #34495e;
+    color: var(--text-color-light);
+    margin-top: 40px; /* 上の要素からの間隔を増やす */
+    box-shadow: 0 -4px 8px rgba(0,0,0,0.15);
+}
+
+/* レスポンシブデザインの調整 */
+@media (max-width: 768px) {
+    .app-title {
+        font-size: 2.5rem;
+    }
+    header p {
+        font-size: 1rem;
+    }
+    main {
+        padding: 15px;
+    }
+    .card {
+        padding: 20px;
+        margin-bottom: 20px;
+    }
+    section h2 {
+        font-size: 1.5rem;
+    }
+    button {
+        padding: 12px 20px;
+        font-size: 1rem;
+    }
+    .modal-content {
+        width: 95%;
+        padding: 20px;
+    }
+    .close-button {
+        font-size: 24px;
+        right: 15px;
+    }
+}
